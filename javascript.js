@@ -53,32 +53,31 @@
   }
  
 
-function updateGrandTotal(status){
-    
-    if(status == undefined){
-        const TotalPrice = convertStringToNumber("total-price");
-      document.getElementById("Grand-Total").innerText =TotalPrice ;
 
-    }else{
-      const CouponCode = document.getElementById("Coupon-Code").Value;
-     
 
-          if (CouponCode == "NEW15"){
-            // const offers = TotalPrice * 0.2;
-            document.getElementById("Grand-Total").innerText = TotalPrice - TotalPrice * 0.2;;
 
-      }
-      else if(CouponCode == "Couple20"){
-        const offers = TotalPrice * 0.16;
-        document.getElementById("Grand-Total").innerText = TotalPrice - offers;
-      }
+function updateGrandTotal(status) {
+    const TotalPrice = convertStringToNumber("total-price");
+  
+    if (status === undefined) {
+        if (!isNaN(TotalPrice)) {
+            document.getElementById("Grand-Total").innerText = TotalPrice;
+        } else {
+            console.error("Invalid total price. Please check the 'total-price' element.");
+        }
+    } else {
+        const CouponCode = document.getElementById("Coupon-Code").value;
+  
+        if (CouponCode === "NEW15") {
+            document.getElementById("Grand-Total").innerText = TotalPrice - TotalPrice * 0.2;
+        } else if (CouponCode === "Couple20") {
+            const offer = TotalPrice * 0.15;
+            document.getElementById("Grand-Total").innerText = TotalPrice - offer;
+        } else {
+           alert("Invalid coupon code. Please check your coupon code.");
+        }
     }
-}
-
-
-
-
-
+  }
 
 
 
